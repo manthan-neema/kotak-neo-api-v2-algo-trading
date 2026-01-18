@@ -188,3 +188,4 @@ cmake-build-release/
 cmake-build-relwithdebinfo/
 cmake-build-minsizerel/
 neo_env/*
+*session.json

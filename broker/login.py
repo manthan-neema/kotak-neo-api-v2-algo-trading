@@ -1,7 +1,8 @@
 from config.session_store import save_session, load_session
 from neo_api_client import NeoAPI
 from config.env import CONSUMER_KEY, MOBILE, UCC, MPIN, validate_env
-
+import tkinter as tk
+from tkinter import simpledialog
 
 def _validate_token_response(resp, step_name):
     if not isinstance(resp, dict):
@@ -24,13 +25,16 @@ def get_new_client():
     print("Client initialized")
 
     # ---- STEP 1: TOTP LOGIN ----
-    totp = input("Enter current TOTP from authenticator app: ").strip()
-    print("Calling TOTP login...")
+    root = tk.Tk()
+    root.withdraw()
 
+    totp = simpledialog.askinteger("Input", "Enter current TOTP from authenticator app:")
+
+    print("Calling TOTP login...")
     resp_login = client.totp_login(
         mobile_number=MOBILE,
         ucc=UCC,
-        totp=totp
+        totp=totp.strip()
     )
     _validate_token_response(resp_login, "TOTP login")
     print("TOTP login OK")
@@ -87,3 +91,6 @@ def get_authenticated_client():
     except Exception as e:
         print(f"❌ Stored session invalid: {e}")
         return get_new_client()
+
+def get_client():
+    return get_cache_stored_client()

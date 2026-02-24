@@ -34,7 +34,7 @@ def get_new_client():
     resp_login = client.totp_login(
         mobile_number=MOBILE,
         ucc=UCC,
-        totp=totp.strip()
+        totp=totp
     )
     _validate_token_response(resp_login, "TOTP login")
     print("TOTP login OK")

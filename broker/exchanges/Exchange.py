@@ -1,12 +1,12 @@
-from broker.login import get_authenticated_client
+from abc import ABC, abstractmethod
 
-class NSE:
+class Exchange(ABC):
 
     def __init__(self, client):
         self.client = client
-        self.exchange_segment = "nse_fo"
         self.product="NRML"
 
+    @abstractmethod
     def place_buy_order(self, ticker_symbol, limit_price, quantity):
         if (limit_price):
             placed_order = self.client.place_order(exchange_segment=str(self.exchange_segment),
@@ -39,6 +39,7 @@ class NSE:
 
         return self.__get_order_status(placed_order)
 
+    @abstractmethod
     def place_sell_order(self, ticker_symbol, limit_price, quantity):
         if (limit_price):
             placed_order = self.client.place_order(exchange_segment=str(self.exchange_segment),

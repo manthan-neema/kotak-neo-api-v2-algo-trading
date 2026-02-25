@@ -1,16 +1,21 @@
+from time import sleep
+
+
 class Kotak:
 
     def __init__(self, client):
         self.client = client
 
     def get_order_status(self, order_no):
+        sleep(1)
         order_report = self.client.order_report()
+        print("order_report:", order_report)
 
-        for order_report in order_report.get("data", []):
-            if order_report.get("nOrdNo") == order_no:
-                order_status = order_report.get("ordSt")
-                order_rejection_reason = order_report.get("rejRsn")
-                order_price = order_report.get("avgPrc")
+        for order in order_report.get("data", []):
+            if (str(order.get("nOrdNo")) == str(order_no)):
+                order_status = order.get("ordSt")
+                order_rejection_reason = order.get("rejRsn")
+                order_price = order.get("avgPrc")
 
                 print("order_no:", order_no)
                 print("order_status:", order_status)
@@ -22,5 +27,4 @@ class Kotak:
                     "order_rejection_reason": order_rejection_reason,
                     "order_price": order_price
                 }
-
-        return None
+        return -1

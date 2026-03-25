@@ -13,3 +13,4 @@ websocket-client==1.8.0
 websockets==8.1
 pandas==2.2.3
 asyncio==3.4.3
+pytest>=7.0.0

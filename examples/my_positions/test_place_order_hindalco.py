@@ -7,35 +7,35 @@ client = login.get_client()
 nse = NSE(client)
 kotak = Kotak(client)
 
-def test_place_buy_order_HDFC_future():
-    order_no = nse.place_buy_order("HDFCBANK26MAYFUT", "","550")
+def test_place_buy_order_hindalco_future():
+    order_no = nse.place_buy_order("HINDALCO26MARFUT", "","700")
     assert order_no != -1, "Order placement failed (buy future)"
 
     order_status = kotak.get_order_status(order_no)
     assert (order_status["order_status"] == "complete")
 
-def test_place_sell_order_HDFC_future():
-    order_no = nse.place_sell_order("HDFCBANK26MARFUT", "","550")
+def test_place_sell_order_hindalco_future():
+    order_no = nse.place_sell_order("HINDALCO26MARFUT", "64","700")
     assert order_no != -1, "Order placement failed (sell future)"
 
     order_status = kotak.get_order_status(order_no)
     assert (order_status["order_status"] == "complete")
 
 
-
-# ---------------------------------------------------------
+# ----------------------------------------------------------------------
 # Options
-# HDFCBANK26MAR880PE
-def test_place_buy_order_HDFC_options():
-    order_no = nse.place_buy_order("HDFCBANK26APR745PE", "","550")
+# HINDALCO26MAR860PE
+def test_place_buy_order_hindalco_options():
+    order_no = nse.place_buy_order("HINDALCO26MAR900PE", "","700")
     assert order_no != -1, "Order placement failed (buy option)"
 
     order_status = kotak.get_order_status(order_no)
     assert (order_status["order_status"] == "complete")
 
-def test_place_sell_order_HDFC_options():
-    order_no = nse.place_sell_order("HDFCBANK26MAR775PE", "","550")
+def test_place_sell_order_hindalco_options():
+    order_no = nse.place_sell_order("HINDALCO26MAR880PE", "","700")
     assert order_no != -1, "Order placement failed (sell option)"
 
     order_status = kotak.get_order_status(order_no)
     assert (order_status["order_status"] == "complete")
+

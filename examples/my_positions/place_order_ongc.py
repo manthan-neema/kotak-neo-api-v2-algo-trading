@@ -26,16 +26,18 @@ def test_place_sell_order_ongc_future():
 
 
 # ------------------------------------
-#options
+# Options
 def test_place_buy_order_ongc_options():
-    order_no = nse.place_buy_order("ONGC26MAR263.75PE", "","2250")
+    order_no = nse.place_buy_order("ONGC26APR270PE", "","2250")
     assert order_no != -1, "Order placement failed (buy option)"
 
     order_status = kotak.get_order_status(order_no)
     assert (order_status["order_status"] == "complete")
 
+# ONGC26APR260PE
+# ONGC26MAR268.75PE
 def test_place_sell_order_ongc_options():
-    order_no = nse.place_sell_order("ONGC26FEB250PE", "","2250")
+    order_no = nse.place_sell_order("ONGC26MAR268.75PE", "0.05","2250")
     assert order_no != -1, "Order placement failed (sell option)"
 
     order_status = kotak.get_order_status(order_no)

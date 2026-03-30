@@ -22,16 +22,18 @@ def test_place_sell_order_hindalco_future():
     assert (order_status["order_status"] == "complete")
 
 # ----------------------------------------------------------------------
+# Options
 # HINDALCO26MAR860PE
 def test_place_buy_order_hindalco_options():
-    order_no = nse.place_buy_order("HINDALCO26FEB900PE", "","700")
+    order_no = nse.place_buy_order("HINDALCO26APR850PE", "20","700")
     assert order_no != -1, "Order placement failed (buy option)"
 
     order_status = kotak.get_order_status(order_no)
     assert (order_status["order_status"] == "complete")
 
+# HINDALCO26APR800PE
 def test_place_sell_order_hindalco_options():
-    order_no = nse.place_sell_order("HINDALCO26FEB910PE", "","700")
+    order_no = nse.place_sell_order("HINDALCO26APR800PE", "10.0","700")
     assert order_no != -1, "Order placement failed (sell option)"
 
     order_status = kotak.get_order_status(order_no)

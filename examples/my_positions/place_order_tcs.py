@@ -22,16 +22,18 @@ def test_place_sell_order_TCS_future():
     assert (order_status["order_status"] == "complete")
 
 # ----------------------------------------------------------------------
+# Options
 # TCS26MAR860PE
 def test_place_buy_order_TCS_options():
-    order_no = nse.place_buy_order("TCS26MAR2560PE", "","175")
+    order_no = nse.place_buy_order("TCS26MAR2380PE", "12.6","175")
     assert order_no != -1, "Order placement failed (buy option)"
 
     order_status = kotak.get_order_status(order_no)
     assert (order_status["order_status"] == "complete")
 
+# TCS26APR2300PE
 def test_place_sell_order_TCS_options():
-    order_no = nse.place_sell_order("TCS26FEB2900PE", "238","175")
+    order_no = nse.place_sell_order("TCS26MAR2380PE", "6","175")
     assert order_no != -1, "Order placement failed (sell option)"
 
     order_status = kotak.get_order_status(order_no)
